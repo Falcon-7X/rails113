@@ -5,10 +5,11 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <td>#</td>
-        <td>Title</td>
-        <td>Description</td>
-        <td>creator<td>
+        <th>#</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Creator<th>
+
       </tr>
     </thead>
     <tbody>
@@ -19,9 +20,11 @@
           <td><%= group.description %></td>
           <td><%= group.user.email %></td>
           <td>
+          <% if current_user && current_user == group.user %>
               <%= link_to("Edit", edit_group_path(group), class: "btn btn-sm btn-default")%>
               <%= link_to("Delete", group_path(group),    class: "btn btn-sm btn-default",
                           method: :delete, data: { confirm: "Are you sure?" } )%>
+          <% end %>
           </td>
         </tr>
       <% end %>
