@@ -2,15 +2,15 @@
   <div class="group">
     <span class="pull-right">
       <% if current_user && current_user.is_member_of?(@group) %>
-        <label class="label label-success"> 群组成员 </label>
           <%= link_to("取消收藏", quit_group_path(@group), method: :post, class: "btn btn-info") %>
       <% else %>
-        <label class="label label-warning"> 不是群组成员 </label>
-          <%= link_to("收藏", join_group_path(@group), method: :post, class: "btn btn-info") %>
+          <%= link_to("收藏后可评论", join_group_path(@group), method: :post, class: "btn btn-info") %>
       <% end %>
     </span>
 
-    <%= link_to("Write a Preview", new_group_post_path(@group), class: "btn btn-default pull-right") %>
+    <% if current_user.is_member_of?(@group) %>
+      <%= link_to("Write a Preview", new_group_post_path(@group), class: "btn btn-default pull-right") %>
+    <% end %>
 
     <% if current_user && current_user == @group.user %>
       <%= link_to("Edit", edit_group_path(@group), class: "btn btn-primary pull-right") %>
